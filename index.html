@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie Matematyczne</title>
+    <!-- Biblioteka do wyświetlania ułamków i symboli matematycznych -->
+    <script src="https://polyfill.io"></script>
+    <script id="MathJax-script" async src="https://jsdelivr.net"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; box-shadow: 2px 2px 10px #eee; }
+        input { padding: 8px; width: 100px; margin-top: 10px; }
+        button { padding: 8px 15px; background: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .result { margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Zadanie: Równanie Kwadratowe</h2>
+    <p>Rozwiąż poniższe równanie i podaj dodatni pierwiastek \(x\):</p>
+    
+    <!-- Przykład zapisu ułamka i potęgi w LaTeX -->
+    <p style="font-size: 1.2rem; text-align: center;">
+        \[ x^2 - \frac{9}{4} = 0 \]
+    </p>
+
+    <input type="number" id="userAnswer" step="0.1" placeholder="Twoja odpowiedź">
+    <button onclick="checkAnswer()">Sprawdź</button>
+
+    <div id="feedback" class="result"></div>
+</div>
+
+<script>
+    function checkAnswer() {
+        const answer = parseFloat(document.getElementById('userAnswer').value);
+        const feedback = document.getElementById('feedback');
+        
+        // Poprawna odpowiedź to 1.5 (czyli pierwiastek z 9/4)
+        if (answer === 1.5) {
+            feedback.innerHTML = "✅ Doskonale! To prawidłowa odpowiedź.";
+            feedback.style.color = "green";
+        } else {
+            feedback.innerHTML = "❌ Spróbuj ponownie. Pamiętaj o wyciągnięciu pierwiastka z ułamka.";
+            feedback.style.color = "red";
+        }
+    }
+</script>
+
+</body>
+</html>
