@@ -1,61 +1,49 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zadanie Matematyczne</title>
-    
-    <!-- Konfiguracja dla MathJax przed jego załadowaniem -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['\\(', '\\)']],
-                displayMath: [['\\[', '\\]']],
-                processEscapes: true
-            }
-        };
-    </script>
-    
-    <!-- Ładowanie bezpiecznego silnika MathJax v3 -->
-    <script id="MathJax-script" async src="https://cloudflare.com"></script>
-
+    <title>Zadanie: Dowód</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; }
-        .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; box-shadow: 2px 2px 10px #eee; }
-        input { padding: 8px; width: 100px; margin-top: 10px; }
-        button { padding: 8px 15px; background: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .result { margin-top: 15px; font-weight: bold; }
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; background-color: #f9f9f9; }
+        .card { border: 1px solid #ccc; padding: 30px; border-radius: 8px; box-shadow: 2px 2px 12px #eee; background-color: white; }
+        h2 { color: #333; margin-top: 0; }
+        ol { padding-left: 20px; }
+        li { margin-bottom: 12px; font-size: 1.1rem; }
+        button { padding: 10px 20px; background: #0070f3; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; margin-top: 15px; }
+        button:hover { background: #0056b3; }
+        .proof-box { margin-top: 20px; padding: 15px; background-color: #f0f7ff; border-left: 4px solid #0070f3; border-radius: 4px; display: none; }
+        .math { font-style: italic; font-family: 'Times New Roman', Times, serif; }
     </style>
 </head>
 <body>
 
 <div class="card">
     <h2>Zadanie: Dowód</h2>
-   <p>Udowodnij, że:</p>
+    <p>Udowodnij, że:</p>
     
-    <!-- Zamiana \begin{tasks} na uporządkowaną listę HTML -->
     <ol>
-        <li>dla każdej liczby naturalnej \(n\) liczba \(6n^2 + 30\) jest podzielna przez 6,</li>
+        <li>dla każdej liczby naturalnej <span class="math">n</span> liczba <span class="math">6n<sup>2</sup> + 30</span> jest podzielna przez 6,</li>
     </ol>
 
-    <input type="number" id="userAnswer" step="0.1" placeholder="Twoja odpowiedź">
-    <button onclick="checkAnswer()">Sprawdź</button>
+    <button onclick="toggleProof()">Pokaż rozwiązanie i dowód</button>
 
-    <div id="feedback" class="result"></div>
+    <div id="proof" class="proof-box">
+        <strong>Dowód:</strong><br>
+        Daną liczbę możemy zapisać w postaci iloczynu, wyciągając wspólny czynnik przed nawias:<br>
+        <p style="text-align: center; font-size: 1.2rem;" class="math">6n<sup>2</sup> + 30 = 6(n<sup>2</sup> + 5)</p>
+        Ponieważ <span class="math">n</span> jest liczbą naturalną, to wyrażenie <span class="math">n<sup>2</sup> + 5</span> również jest liczbą naturalną. <br><br>
+        Liczba zapisana w postaci <span class="math">6 &middot; k</span> (gdzie <span class="math">k = n<sup>2</sup> + 5</span>) jest wprost podzielna przez 6, co kończy dowód. &#9632;
+    </div>
 </div>
 
 <script>
-    function checkAnswer() {
-        const answer = parseFloat(document.getElementById('userAnswer').value);
-        const feedback = document.getElementById('feedback');
-        
-        // Poprawna odpowiedź to 1.5 (czyli pierwiastek z 9/4)
-        if (answer === 1.5) {
-            feedback.innerHTML = "✅ Doskonale! To prawidłowa odpowiedź.";
-            feedback.style.color = "green";
+    function toggleProof() {
+        const proofDiv = document.getElementById('proof');
+        if (proofDiv.style.display === 'none' || proofDiv.style.display === '') {
+            proofDiv.style.display = 'block';
         } else {
-            feedback.innerHTML = "❌ Spróbuj ponownie. Pamiętaj o wyciągnięciu pierwiastka z ułamka.";
-            feedback.style.color = "red";
+            proofDiv.style.display = 'none';
         }
     }
 </script>
