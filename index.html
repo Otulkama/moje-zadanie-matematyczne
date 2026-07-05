@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zadanie Matematyczne</title>
-    <!-- Biblioteka do wyświetlania ułamków i symboli matematycznych -->
-   <script src="https://cloudflare.com"></script>
- <script id="MathJax-script" async src="https://jsdelivr.net"></script>
+    
+    <!-- Konfiguracja dla MathJax przed jego załadowaniem -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            }
+        };
+    </script>
+    
+    <!-- Ładowanie bezpiecznego silnika MathJax v3 -->
+    <script id="MathJax-script" async src="https://cloudflare.com"></script>
+
     <style>
         body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; }
         .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; box-shadow: 2px 2px 10px #eee; }
